@@ -1,0 +1,74 @@
+<form id="pagerForm" action="__URL__/OrgLookup/">
+	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+        <input type="hidden" name="Member" value="{$TaskMember}" />
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" method="post" action="__URL__/OrgLookup/" onsubmit="return dwzSearch(this, 'dialog');">
+            <input type="hidden" name="Member" value="{$TaskMember}" />
+	<div class="searchBar">
+		<ul class="searchContent">
+			<li>
+				<label>部门名称:</label>
+				<input class="textInput" name="orgName" value="{$_REQUEST['orgName']}" type="text">
+			</li>
+                        <li><span style="color:red;width: 300px">成员:{$TaskMemberName}</span></li>
+		</ul>
+            <ul>
+                <li>
+                    <label>support:</label>
+                    <select class="small bLeft"  name="support">
+                        <option value=""></option>
+                        <volist name="supportlist" id="st">
+                            <option value="{$st.id}" <eq name="st.id" value="$_REQUEST['support']" >selected</eq>>{$st.nickname}</option>
+                        </volist>
+                    </select>
+                </li>
+                <!--<li>
+                    <label>support:</label>
+                    <input type="hidden" name="orgLookup.id" value="{$vo['task_menber']}"/>
+                    <input type="text" class="textInput required" name="orgLookup.orgName" value="{$vo['task_menber_name']}" suggestFields="orgNum,orgName" suggestUrl="demo/database/db_lookupSuggest.html" lookupGroup="orgLookup" />
+                    <a class="btnLook" href="__URL__/supportTeam/id/{$vo.id}/Member/{$vo['task_menber']|default=0}" lookupGroup="orgLookup" title="添加support的列表页" mask="true">查找带回</a>
+                </li>-->
+            </ul>
+		<div class="subBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" multLookup="orgId" warn="请选择你的Member">提交</button></div></div></li>
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+
+	<table class="table" layoutH="96" targetType="dialog" width="100%">
+		<thead>
+			<tr>
+				<th width="30"><input type="checkbox" class="checkboxCtrl" group="orgId" /></th>
+                                <th width="30" align="center">排序</th>
+				<th orderfield="orgName">姓名</th>
+				<th orderfield="orgNum">工号</th>
+				<th orderfield="leader">email</th>
+				<th orderfield="creator">状态</th>
+			</tr>
+		</thead>
+		<tbody>
+                <volist name="list" id="userlist">
+                        <tr>
+				<td><input type="checkbox" name="orgId" value="{id:'<?php echo $userlist['uid']; ?>', orgName:'<?php echo $userlist['uname']; ?>', orgNum:'1'}" <in name="userlist['uid']" value="$TaskMember">checked</in>
+/></td>
+				<td>{$key}</td>
+                                <td>{$userlist['uname']}</td>
+				<td>{$userlist['unumber']}</td>
+				<td>{$userlist['uemail']}</td>
+				<td><eq name="userlist['status']" value="1">激活<else/>未激活</eq></td>
+			</tr>
+                </volist>
+		</tbody>
+	</table>
+
+</div>

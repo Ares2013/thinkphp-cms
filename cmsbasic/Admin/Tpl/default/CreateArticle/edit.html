@@ -1,0 +1,76 @@
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/update/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+            	
+                <input type="hidden" name="id" value="{$vo.id}" />
+		<input type="hidden" name="callbackType" value="closeCurrent" />
+		<div class="pageFormContent" layoutH="58">
+
+		<div class="unit">
+			<label>project名：</label>
+			<input type="text" class="required"   name="title" value="{$vo.title}">
+		</div>	
+                <div class="unit">
+			<label>project_code：</label>
+			<input type="text" class="required"   name="code" value="{$vo.code}">
+		</div>
+                <div class="unit">
+			<label>创建者：</label>
+			<input type="text" class="textInput"   name="c_name" value="{$jobnumber}" disabled="disabled">
+		</div>
+                <div class="unit">
+			<label>Test Leader：</label>
+			<select name="p_cw">
+                           <volist name="userlist" id="u_list">
+                              <option value="{$u_list.id}" <eq name="u_list['id']" value="$vo.p_cw" >selected</eq>>{$u_list['account']}</option>
+                           </volist>
+                        </select>
+		</div>
+                <div class="unit">
+				<label>所属内部组名：</label>
+				<SELECT name="teamid">
+					<option value=""></option>
+                                    <volist name="allgroup" id="allgroup">
+                                        <option value="{$allgroup.id}" <eq name="vo.teamid" value="$allgroup.id">selected</eq>>{$allgroup.nickname}</option>
+                                    </volist>
+				</SELECT>
+			</div>    
+		<div class="unit">
+			<label>所属分类：</label>
+			<select name="type">
+                            <volist name="typelist" id="volist">
+                                <option value="{$volist.id}" <eq name="vo.task_type" value="$volist['id']" >selected</eq>>{$volist.title}===>{$volist.group_id|getUserGroupName}</option>
+                            </volist>
+			</select>
+		</div>
+                <div class="unit">
+			<label>是否完成：</label>
+			<select class="small bLeft"  name="finish">
+				<option <eq name="vo.finish" value="1" >selected</eq> value="1">完成</option>
+				<option <eq name="vo.finish" value="0" >selected</eq> value="0">未完成</option>
+			</select>
+		</div>
+		<div class="unit">
+			<label>状态：</label>
+			<select class="small bLeft"  name="status">
+				<option <eq name="vo.status" value="1" >selected</eq> value="1">启用</option>
+				<option <eq name="vo.status" value="0" >selected</eq> value="0">禁用</option>
+			</select>
+		</div>
+		<div class="unit">
+			<label>描述：</label>
+			<textarea name="remark"  rows="3" cols="57">{$vo.remark}</textarea>
+		</div>
+		
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>

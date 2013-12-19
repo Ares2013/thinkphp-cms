@@ -1,0 +1,59 @@
+<div class="page">
+	<div class="pageContent">
+	<form method="post" action="__URL__/insert/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, navTabAjaxDone);">
+		<div class="pageFormContent" layoutH="58">
+		
+            	<div class="tabs">
+				<div class="tabsHeader">
+					<div class="tabsHeaderContent">
+						<ul>
+							<li class="selected"><a href="#"><span>添加广告</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabsContent" >
+				<div>
+			<input type="hidden" name="callbackType" value="closeCurrent" />
+			<div class="unit">
+				<label>广告名称：</label>
+				<input type="text" class="required" size="30" name="ad_name"/>
+			</div>			
+			<div class="unit">
+				<label>广告连接：</label>
+				<input type="text" class="required" size="30" name="ad_link"/>
+			</div>
+			<div class="unit">
+				<label>广告位：</label>
+				<select name="position_id">
+					<option value="0">选择广告位</option>
+					<volist name="list" id="vo">
+						<option value="{$vo.position_id}">{$vo.position_name}</option>
+					</volist>
+				</select>
+			</div>
+			<div class="unit">
+				<label>预览图片：</label>
+				<input type="file" name="img" />
+			</div>
+			<div class="unit">
+				<label>排序值：</label>
+				<input type="text" name="order" size="20" value="0" /> 值越大，显示排名越靠前
+			</div>
+		</div>
+		</div>
+				<div class="tabsFooter">
+					<div class="tabsFooterContent"></div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>

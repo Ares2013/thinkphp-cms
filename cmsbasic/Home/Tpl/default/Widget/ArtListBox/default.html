@@ -1,0 +1,7 @@
+<volist name="artlist" id="vo">
+	 <div <if condition="$i eq 0"> class="grid_7 alpha" style="width:314px;"<elseif condition="$i eq 1" /> class="grid_7" style="width:314px;margin:0px 4px;" <else /> class="grid_7 omega" style="width:314px;"  </if>> 
+		<a class="" href="{:U('Article/view',array('id'=>$vo['article_id']))}" title="{$vo.title}">
+			<img src="__PUBLIC__/Upload/article/{$vo.file_url}" alt="{$vo.title}" style="314px;height:235px;"/>
+		</a>
+	 </div>
+</volist>

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>作品展示</title>
+<link href="__PUBLIC__/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/960_24.css" rel="stylesheet" type="text/css" />
+<link href="__SKIN__/css/basic.css" rel="stylesheet" type="text/css" />
+<link href="__SKIN__/css/globe.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--页面头部模块-->
+<div class="header">
+  <div class="container_24">
+    <div class="grid_5" style="width:180px; height:36px; background:#ec5f02; margin-top:29px;">
+      <div class="nav_text">
+        <h3>快速导航</h3>
+      </div>
+    </div>
+    <div class="grid_12">
+      <ul>
+        <li><a href="/index.html">首页</a></li>
+        <li><a href="{:U('Article/page')}">简介</a></li>
+        <li><a href="{:U('Article/index',array('id'=>1))}">作品</a></li>
+        <li><a href="#">文章</a></li>
+      </ul>
+    </div>
+    <div class="grid_7">
+      <div id="search_box">
+        <form name="" action="" method="post">
+          <input type="text" name="" class="txt" value="" placeholder=" 搜索站内内容"/><input type="submit" class="btn" value="" />
+          
+        </form>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<!--内容-->
+<div class="cont">
+  <div clss="cont_banner">
+    <div class="container_24">
+      <div class="grid_5">
+        <div class="left_nav">
+          <ul>
+            <li><a href="/index.html">首页</a></li>
+			<li><a href="{:U('Article/page')}">简介</a></li>
+			<li><a href="{:U('Article/index',array('id'=>1))}">作品</a></li>
+			<li><a href="#">文章</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class=" grid_19">
+        <div>
+			{:W('AdvBox',array('id'=>2))}
+		</div>
+      </div>
+    </div>
+  </div>
+  <!--内容上部分-->
+  <div class="pant">
+    <div class="clear"></div>
+    <div class="container_24">
+      <div class="pant_btn">
+        <ul>
+          <li <if condition="$artCat['cat_id'] eq 1"> class="current" </if> ><a href="{:U('Article/index',array('id'=>1))}">全部作品</a></li>
+          <li <if condition="$artCat['cat_id'] eq 2"> class="current" </if> ><a href="{:U('Article/index',array('id'=>2))}">绘画作品</a></li>
+          <li <if condition="$artCat['cat_id'] eq 3"> class="current" </if> ><a href="{:U('Article/index',array('id'=>3))}">网站作品</a></li>
+        </ul>
+      </div>
+      <!--按钮完-->
+      <div class="clear"></div>
+      <div class="works">
+        <div class="container_24">
+		  <volist name="list" id="vo" mod="3">
+          <div <eq name="mod" value="0"> class="grid_7 alpha" style="width:314px;" </eq> 
+		   <eq name="mod" value="1"> class="grid_7" style="width:314px;margin:0px 4px;" </eq>
+		   <eq name="mod" value="2"> class="grid_7 omega" style="width:314px;" </eq>
+		  >
+			<a class="" href="{:U('Article/view',array('id'=>$vo['article_id']))}" title="{$vo.title}">
+				<img <if condition="empty($vo['file_url'])">src="__SKIN__/images/imge3.png"<else /> src="__PUBLIC__/Upload/article/{$vo.file_url}" </if> alt="{$vo.title}" style="width:314px;height:235px;"/>
+			</a> 
+			<div class="theme" style="height:40px;">
+			<a href="{:U('Article/view',array('id'=>$vo['article_id']))}" title="{$vo.title}">
+				{$vo.title}
+			</a>
+			</div>
+		  </div>
+		  <eq name="mod" value="3"> <div class="clear"></div> </eq>
+          </volist>
+        </div>
+      </div>
+      <div class="clear"></div>
+		<div class="page">
+			{$page}
+		</div>
+    </div>
+  </div>
+</div>
+<!--内容完成-->
+
+<div class="footer">
+  <div class="clear"> </div>
+  <div class="container_24" >
+    <div class="grid_9">
+      <div class="footer_logo"><img src="__SKIN__/images/bottom-logo.gif" alt="logo" width="232" height="63"/ > </div>
+    </div>
+    <div class="grid_5">
+      <div>
+        <dl>
+          <dt>页面</dt>
+          <dd>简介</dd>
+          <dd>作品</dd>
+          <dd>文章</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="grid_5">
+      <div>
+        <dl>
+          <dt>链接表</dt>
+          <dd>668自由云</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="grid_5">
+      <div>
+        <dl>
+          <dt>文章</dt>
+          <dd>如何做好banner</dd>
+          <dd>网络转载</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

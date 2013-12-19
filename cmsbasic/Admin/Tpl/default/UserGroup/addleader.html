@@ -1,0 +1,86 @@
+<div class="pageHeader">
+	<form onsubmit="return dialogSearch(this);" action="__URL__/addleader/" method="post">
+        <input type="hidden" name="gid" value="{$gid}">
+        <div class="searchBar">
+		<ul class="searchContent">
+			<li>
+                            <label>小组的名字为：</label><span class="info" style="float: left;display: block;line-height: 21px;color: red;font-weight: bold;">{$ItselfGroup_name}</span>
+			</li>
+                        <li>
+			<label>Leader是：</label><span class="info" style="float: left;display: block;line-height: 21px;color: red;font-weight: bold;">{$ItselfGroup_leader_en|default="未指定"}({$ItselfGroup_leader_cn|default="未指定"})</span>
+			</li>
+		</ul>
+                <ul class="searchContent">
+			<li>
+				<label>名称：</label>
+				<input type="text" name="username" class="medium" >
+			</li>
+                        <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+		</ul>
+                
+	</div>
+        </form>
+</div>
+<div class="pageContent">
+    <form method="post" action="__URL__/upmenber/navTabId/__MODEL__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxMenu)" novalidate="novalidate">
+	<input type="hidden" name="groupid" value="{$_REQUEST.gid}">
+        <input type="hidden" value="closeCurrent" name="callbackType">
+       <div class="panelBar">
+		<ul class="toolBar">                    
+                    <li><a class="add" href="__URL__/upmenber/gid/{$gid}/navTabId/UserGroup/" posttype="string" target="selectedTodo" calback="navTabAjaxMenu" title="你确定要对{$ItselfGroup_name}添加了吗？" warn="请选择对应的人"><span>添加</span></a></li>
+                    <li class="line">line</li>
+                    
+                    <li class="line">line</li>
+                    <li><div class="button"><div class="buttonContent"><button type="button" class="close">关闭页面</button></div></div></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="125">
+		<thead>
+			<tr>
+                            <th width="10"><input type="checkbox" group="uid" class="checkboxCtrl" /></th>
+                                <th width="20" align="center">编号</th>
+                                <th width="60" align="center">英文名</th>
+				<th width="60" align="center">中文名</th>
+				<th width="20" align="center">工号</th>
+                                <th width="20" align="center">所属组</th>
+				<th width="20" align="center">E-mail</th>
+				<th width="20" align="center">性别</th>
+				<th width="20" align="center">员工属性</th>
+				<th width="20" align="center">状态</th>
+			</tr>
+		</thead>
+		<tbody>
+                <volist id="vo" name="list">
+                        <tr target="sid_user" rel="{$vo.id}">
+                                <td><input name="uid"  type="checkbox" value="{$vo.id}" /></td>
+                                <td>{$vo.id}</td>
+                                <td>{$vo.account}</td>
+                                <td>{$vo.nickname}</td>
+				<td>{$vo.job_number}</td>
+                                <td>{$vo.user_group_id|getUserGroupName}</td>
+				<td>{$vo.email}</td>
+                                <td><if condition="$vo.sex eq 1">男<elseif condition="$vo.sex eq 0"/>女<else />未指定</if></td>
+				<td><if condition="$vo.user_nature eq 1">IDL<elseif condition="$vo.user_nature eq 2"/>DL<elseif condition="$vo.user_nature eq 3"/>IDL+D<else />未指定</if></td>
+				
+				<td>{$vo['status']|showStatusImg=$vo['id']}</td>
+			</tr>
+                </volist>
+		</tbody>
+	</table>
+	<!--
+        <div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+				<option value="200">200</option>
+			</select>
+			<span>条，共${totalCount}条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="200" numPerPage="20" pageNumShown="10" currentPage="1"></div>
+	</div>
+        -->
+    </form>
+</div>

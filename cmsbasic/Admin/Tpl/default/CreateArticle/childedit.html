@@ -1,0 +1,94 @@
+<div class="page">
+	<div class="pageContent">
+	<form method="post" action="__URL__/childupdata/navTabId/CreateTask" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<input type="hidden" name="project_id" value="{$vo.project_id}" />
+                <input type="hidden" name="id" value="{$vo.id}" />
+		<input type="hidden" name="callbackType" value="closeCurrent" />
+		<div class="pageFormContent" layoutH="58">
+
+                <div class="unit">
+			<label>Task_name：</label>
+			<input type="text" class="required"   name="task_title" value="{$vo.task_title}">
+		</div>
+                <!--
+                <div class="unit">
+			<label>Task Member：</label>
+			<input type="text" class="required"   name="task_menber" value="{$vo.task_menber}">
+		</div>-->
+                <div class="unit">
+			<label>Attend Time：</label>
+			<input type="text" class="required"   name="est_time" value="{$vo.est_time}">
+		</div>
+                <div class="unit">
+				<label>Testing Ratios：</label>
+                                <input type="text" class="digits textInput valid required" name="ratios" value="{$vo.ratios}">
+                                <span class="info">(单位：%,Testing Ratios)</span>
+			</div>
+                <div class="unit">
+				<label>Schedule-start：</label>
+                                <input type="text" class="date textInput valid" name="schedule_start" value="{$vo.schedule_start}" />
+                                <a href="javascript:;" class="inputDateButton">选择</a>
+                                <span class="info">yyyy-MM-dd</span>
+		</div>
+                <div class="unit">
+				<label>Schedule-end：</label>
+                                <input type="text" class="date textInput valid" name="schedule_end" value="{$vo.schedule_end}" />
+                                <a href="javascript:;" class="inputDateButton">选择</a>
+                                <span class="info">yyyy-MM-dd</span>
+		</div> 
+                <div class="unit">
+                    <label>Type：</label>
+                    <SELECT name="task_type">
+                       <volist name="typelist" id="volist">
+                            <option value="{$volist.id}" <eq name="vo.task_type" value="$volist['id']" >selected</eq>>{$volist.title}===>{$volist.group_id|getUserGroupName}</option>
+                       </volist>
+                    </SELECT>
+                </div>
+                <div class="unit">
+				<label>Task Leader：</label>
+				<!--<input type="text" class=""   name="p_cw">-->
+                                <select name="task_leader">
+                                    <option value="0"></option>
+                                    <volist name="userlist" id="u_list">
+                                        <option value="{$u_list.id}" <eq name="u_list['id']" value="$uid" >selected</eq>>{$u_list['account']}</option>
+                                    </volist>
+                                </select>
+                                <span class="info">有需要的小组请填写</span>
+			</div>
+                <div class="unit">
+			<label>是否完成：</label>
+			<select class="small bLeft"  name="finish">
+				<option <eq name="vo.finish" value="1" >selected</eq> value="1">完成</option>
+				<option <eq name="vo.finish" value="0" >selected</eq> value="0">未完成</option>
+			</select>
+		</div>
+		<div class="unit">
+			<label>状态：</label>
+			<select class="small bLeft"  name="status">
+				<option <eq name="vo.status" value="1" >selected</eq> value="1">Ongoing</option>
+				<option <eq name="vo.status" value="0" >selected</eq> value="0">Finished</option>
+                                <option <eq name="vo.status" value="2" >selected</eq> value="0">Death</option>
+			</select>
+		</div>
+                <div class="unit">
+                            <label>Member：</label>
+				<input type="hidden" name="orgLookup.id" value="{$vo['task_menber']}"/>
+				<input type="text" class="required" name="orgLookup.orgName" value="{$vo['task_menber_name']}" suggestFields="orgNum,orgName" suggestUrl="demo/database/db_lookupSuggest.html" lookupGroup="orgLookup" />
+				<a class="btnLook" href="__URL__/OrgLookup/id/{$vo.id}/Member/{$vo['task_menber']|default=0}" lookupGroup="orgLookup" title="添加Member的列表页" mask="true">查找带回</a>
+                        </div>
+		<div class="unit">
+			<label>描述：</label>
+			<textarea name="remark"  rows="3" cols="57">{$vo.remark}</textarea>
+		</div>
+		
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>

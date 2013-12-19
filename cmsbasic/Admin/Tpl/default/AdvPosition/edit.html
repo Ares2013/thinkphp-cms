@@ -1,0 +1,107 @@
+<div class="page">
+	{$commonscript}
+	<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, navTabAjaxDone);">
+		<div class="pageFormContent" layoutH="58">
+		<div class="tabs">
+				<div class="tabsHeader">
+					<div class="tabsHeaderContent">
+						<ul>
+							<li class="selected"><a href="#"><span>修改广告位</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabsContent" >
+		  <div>
+		<input type="hidden" name="position_id" value="{$vo.position_id}" />
+		
+		<input type="hidden" name="callbackType" value="closeCurrent" />
+			<div class="unit">
+				<label>{$Think.lang.NAME}：</label>
+				<input type="text" class="required" size="40" maxlength="120" name="position_name" value="{$vo.position_name}" />
+			</div>
+			<div class="unit">
+				<label>广告模版：</label>
+				<select id="select_template" name="template">
+					<volist name="template" id="vl">
+						<option value="{$key}" <eq name="key" value="$vo['template']">selected</eq>>{$vl}</option>
+					</volist>
+				</select>
+			</div>
+			
+			<div id="data_container" <empty name="datalist[$vo['template']]"> style="display:none;" </empty>class="unit">
+				<label>模版效果：</label>
+				<select id="dataselect" name="data">
+					<notempty name="datalist[$vo['template']]">
+						<volist name="datalist[$vo['template']]" id="vl">
+							<option value="{$key}" <eq name="key" value="$vo['data']">selected</eq>>{$vl}</option>
+						</volist>
+					<else />
+						<option value="">请选择</option>
+					</notempty>
+				</select>
+			</div>
+			
+			<div class="unit">
+				<label>{$Think.lang.WIDTH}：</label>
+				<input type="text" name="ad_width" size="60" value="{$vo.ad_width}" />  {$Think.lang.PIXEL}
+			</div>
+			<div class="unit">
+				<label>{$Think.lang.HEIGHT}：</label>
+				<input type="text" name="ad_height" size="60" value="{$vo.ad_height}"/>  {$Think.lang.PIXEL}
+			</div>
+			<div class="unit">
+				<label>状态：</label>
+				<select class="small bLeft"  name="status">
+					<option <eq name="vo.status" value="1" >selected</eq> value="1">启用</option>
+					<option <eq name="vo.status" value="0" >selected</eq> value="0">禁用</option>
+				</select>
+			</div>
+			<div class="unit">
+				<label>广告位描述：</label>
+				<textarea name="position_desc" rows="16" cols="91">{$vo.position_desc}</textarea>
+			</div>
+		</div>
+				</div>
+				<div class="tabsFooter">
+					<div class="tabsFooterContent"></div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		data=$.parseJSON(data);
+		$("#select_template").change(function(){
+			var val=$(this).val();
+
+			var rs=$.isEmptyObject(data[val])//['mF_YSlider']);
+			if(rs===false)
+			{
+				$("#dataselect").html('');
+				$.each( data[val], function(i, n){
+					var o=$("<option value='"+i+"' >"+n+"</option>");
+					$("#dataselect").append(o);
+				});
+
+				$("#data_container").css('display','block');
+			}
+			else
+			{
+				$("#dataselect").html('');
+				var o=$("<option value='' >请选择</option>");
+				$("#data_container").css('display','none');
+			}
+		});
+	});
+</script>

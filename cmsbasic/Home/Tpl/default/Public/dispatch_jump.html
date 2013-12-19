@@ -1,0 +1,43 @@
+<include file="Public:header" />
+<style>
+#jump{width:960px;background:#FFFFFF;border: 1px solid #DDDDDD;display: table;height: 100%;padding:130px 0;margin:0 auto;}
+.jump_cont{width:624px;height:94px;border:1px solid #DADADA;margin:0 auto;}
+.jump_dl dt{width:133px;height:74px;padding-top:24px;float:left;text-align:center;}
+.jump_dl dd{width:430px;height:84px;float:left;padding-top:10px;}
+.jump_dl dd h2{text-align:center;color:#c10009;font-size:14px;line-height:34px;}
+.jump_dl dd h3{font-size:14px;font-weight:normal;text-align:center;}
+.jump_dl dd h3 span{padding-left:7px;padding-right:7px;color:#c10009;}
+.jump_dl dd h3 a{color:#c10009;padding-left:7px;padding-right:7px;text-decoration:underline;}
+</style>
+<div id="jump">
+	<div class="jump_cont">
+    	<dl class="jump_dl">
+        	<dt><img src="__SKIN__/images/jump_logo.jpg" /></dt>
+            <dd>
+            	<present name="message" >
+				<h2>{$msgTitle}{$message}</h2>
+				<else/>
+				<h2 class="error">{$msgTitle}{$error}</h2>
+				</present>
+				<present name="closeWin" >
+					<h3>页面将在 <span id="wait">{$waitSecond}</span> 秒后自动关闭，如果不想等待请点击 <a id="href" target="_top" href="{$jumpUrl}">这里</a> 关闭</h3>
+				<else/>
+					<h3>页面将在 <span id="wait">{$waitSecond}</span> 秒后自动跳转，如果不想等待请点击 <a id="href" target="_top" href="{$jumpUrl}">这里</a> 跳转</h3>
+				</present>
+            </dd>
+        </dl>
+    </div>
+</div>
+<script type="text/javascript">
+(function(){
+	var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+	var interval = setInterval(function(){
+		var time = --wait.innerHTML;
+		if(time == 0) {
+			location.href = href;
+			clearInterval(interval);
+		};
+	}, 1000);
+	})();
+</script>
+<include file="Public:footer" />

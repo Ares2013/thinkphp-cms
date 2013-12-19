@@ -1,0 +1,55 @@
+<include file="Public:header" />
+<!--内容-->
+<div class="container_24">
+  <div class="grid_24">
+	{:W('AdvBox',array('id'=>1))}
+  </div>
+  <div class="clear"></div>
+  <div class="line">
+    <div class="title"> </div>
+  </div>
+  <div class="clear"></div>
+  <div class="works">
+    <volist name="artlist" id="vo">
+	 <div <if condition="$i eq 0"> class="grid_7 alpha" style="width:314px;"<elseif condition="$i eq 1" /> class="grid_7" style="width:314px;margin:0px 4px;" <else /> class="grid_7 omega" style="width:314px;"  </if>> 
+		<a class="" href="{:U('Article/view',array('id'=>$vo['article_id']))}" title="{$vo.title}">
+			<img src="__PUBLIC__/Upload/article/{$vo.file_url}" alt="{$vo.title}" style="314px;height:235px;"/>
+		</a>
+	 </div>
+	</volist>
+    <div class="clear"></div>
+  </div>
+  <div class="desc">
+    <div class="clear"></div>
+    <div class="grid_7 alpha" style="width:314px;">
+      <div class="desc_text">
+      <h3 class="desc_title">绘画作品</h3>
+      <div style="padding:10px;line-height:1.2em;">
+      <p> 07年步入大学校门，第一次拿起艺术的画笔，踏上了我的设计生涯。虽然现如今，绘图软件比比皆是，但是我相信一个好的设计师必须拥有一定的绘画功底。这幅作品是大学时期临摹的一幅室内设计作品，主要是用彩铅绘画而成，不过遗憾的是现在只能看到照片了，原图被老师留下了！
+      </p>
+      </div>
+      
+      </div>
+    </div>
+    <div class="grid_7" style="width:314px;margin:0px 4px;" >
+      <div class="desc_text">
+      	<h3 class="desc_title">网站作品</h3>
+      <div style="padding:10px;line-height:1.2em;">
+      <p> 
+      </p>
+      </div>
+      </div>
+    </div>
+    <div class="grid_7 omega" style="width:314px;">
+      <div class="desc_text">
+      		<h3 class="desc_title">其它作品</h3>
+      <div style="padding:10px;line-height:1.2em;">
+      <p>
+      	除了手绘，网站作品之外，还整理上传了其它的一些作品，包括手机APP等！还有根据百度Mac输入法皮肤大赛，比赛规则设计的百度输入法皮肤。以西瓜为主题，采用红绿对比色，视觉上更有冲击力！
+      </p>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer" />

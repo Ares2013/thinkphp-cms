@@ -1,0 +1,57 @@
+<form id="pagerForm" action="__URL__/supportTeam/">
+	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+        <input type="hidden" name="Member" value="{$TaskMember}" />
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" method="post" action="__URL__/supportTeam/" onsubmit="return dwzSearch(this, 'dialog');">
+            <input type="hidden" name="Member" value="{$TaskMember}" />
+	<div class="searchBar">
+		<ul class="searchContent">
+			<li>
+				<label>部门名称:</label>
+				<input class="textInput" name="orgName" value="{$_REQUEST['orgName']}" type="text">
+			</li>
+                        <li><span style="color:red;width: 300px">成员:{$TaskMemberName}</span></li>
+		</ul>
+		<div class="subBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" multLookup="orgId" warn="请选择你的Member">确定让他们参入</button></div></div></li>
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+
+	<table class="table" layoutH="96" targetType="dialog" width="100%">
+		<thead>
+			<tr>
+				<th width="30"><input type="checkbox" class="checkboxCtrl" group="orgId" /></th>
+                                <th width="30" align="center">排序</th>
+				<th orderfield="orgName">用户组名</th>
+				<th orderfield="orgNum">创建时间</th>
+				<!--<th orderfield="leader">email</th>-->
+				<th orderfield="creator">状态</th>
+			</tr>
+		</thead>
+		<tbody>
+                <volist name="supportlist" id="userlist">
+                        <tr>
+				<td><input type="checkbox" name="orgId" value="{id:'<?php echo $userlist['id']; ?>', orgName:'<?php echo $userlist['nickname']; ?>', orgNum:'1'}" 
+/></td>
+				<td>{$key}</td>
+                                <td>{$userlist['nickname']}</td>
+				<td>{$userlist['create_time']}</td>
+				<!--<td>{$userlist['uemail']}</td>-->
+				<td><eq name="userlist['status']" value="1">激活<else/>未激活</eq></td>
+			</tr>
+                </volist>
+		</tbody>
+	</table>
+
+</div>

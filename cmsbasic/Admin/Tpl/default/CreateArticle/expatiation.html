@@ -1,0 +1,90 @@
+<form id="pagerForm" method="post" action="demo_page1.html">
+	<input type="hidden" name="status" value="${param.status}">
+	<input type="hidden" name="keywords" value="${param.keywords}" />
+	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+</form>
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+		<div class="searchBar" defH="40">
+		<ul class="searchContent">
+			<li>
+			名字为：<a href="javascript:void(0);" style="color: red;font-weight: bold;">{$_REQUEST.un}</a>
+			</li>
+                        <li>
+			任务分配日期：<a href="javascript:void(0);" style="color: red;font-weight: bold;">{$_REQUEST.su|date="Y-m-d",###}</a>
+			</li>
+		</ul>
+                <ul class="searchContent">
+			<li>
+                            建议在：<a href="javascript:void(0);" style="color: red;font-weight: bold;">{$_REQUEST.su|date="Y-m-d",###}的{$_REQUEST.un}</a>分配量<a href="javascript:void(0);" style="color: red;font-weight: bold;">{$task_total}</a>
+			</li>
+                        <li>
+                            同时期内参与了<a href="javascript:void(0);" style="color: red;font-weight: bold;">{$tasklist_number}</a>个任务
+                        </li>
+		</ul>    
+	</div>
+            <div class="subBar">
+			<ul>
+				<!--<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>-->
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">关闭页面</button></div></div></li>
+			</ul>
+		</div>
+	
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="demo_page4.html" target="navTab"><span>添加</span></a></li>
+			<li><a class="delete" href="__URL__/" target="ajaxTodo" title="确定要删除吗?"><span>删除task工作量</span></a></li>
+			<li><a class="edit" href="demo_page4.html?uid={sid_user}" target="navTab"><span>修改</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="100">
+		<thead>
+			<tr>
+                                <th><input type="checkbox" group="ids" class="checkboxCtrl" /></th>
+                                <th width="80" align="center">编号</th>
+                                <th width="80" align="center">Task的id</th>
+				<th width="120" align="center">Taskname</th>
+                                <th align="center">任务量</th>
+				<th align="center">日期</th>
+				<th width="100" align="center">Task开始时间</th>
+				<th width="150" align="center">Task结束日期</th>
+			</tr>
+		</thead>
+		<tbody>
+                <volist name="tasklist" id="vo">
+                        <tr target="sid_user" rel="{$key}">
+                                <td><input name="ids"  type="checkbox" value="{$vo['id']}" /></td>
+                                <td>{$key}</td>
+                                <td>{$vo.taskid}</td>
+				<td>{$vo.task_name}</td>
+                                <td>{$vo.task_num}</td>
+				<td>{$vo.detail_time|date="Y/m/d",###}</td>
+				<td>{$vo.schedule_start|date="Y/m/d",###}</td>
+				<td>{$vo.schedule_end|date="Y/m/d",###}</td>
+			</tr>
+                </volist>
+		</tbody>
+	</table>
+	<!--<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+				<option value="200">200</option>
+			</select>
+			<span>条，共${totalCount}条</span>
+		</div>
+		
+		<div class="pagination" targetType="navTab" totalCount="200" numPerPage="20" pageNumShown="10" currentPage="1"></div>
+
+	</div>-->
+</div>

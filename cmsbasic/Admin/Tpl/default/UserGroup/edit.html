@@ -1,0 +1,52 @@
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+
+		<input type="hidden" name="user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>"/>
+
+		<input type="hidden" name="id" value="{$vo.id}" />
+                <input type="hidden" value="closeCurrent" name="callbackType">
+		<div class="pageFormContent" layoutH="58">
+			<div class="unit">
+                            <label>内部名：</label>
+                            <input type="text" class="required alphanumeric"  name="nickname" value="{$vo.nickname}">
+                                <span class="info">例如:Annie/Astro/Lily/Rosa/Yama</span>
+			</div>
+			<div class="unit">
+                            <label>行政名：</label>
+				<input type="text" class="alphanumeric"   name="name" value="{$vo.name}">
+                                <span class="info">例如:1STS10,1STS20,1STSZ10,1STZ20</span>
+			</div>
+                        <div class="unit">
+                            <label>PCC编号：</label>
+                            <input type="text" class="alphanumeric"   name="pccname" value="{$vo.pccname}">
+                                <span class="info">例：V00000,L0000,F52000,F51000,F50300</span>
+			</div>
+                        <div class="unit">
+                                    <label>所属分组：</label>
+                                    <select name="pid">
+                                            <option value="">未分组</option>
+                                                    <volist name="list" id="group">
+                                                    <option value="{$group.id}" <eq name="group.id" value="$vo['pid']">selected</eq>>{$group.nickname}</option>
+                                                    </volist>
+                                    </select>
+                        </div>
+                        <div class="unit">
+                            <label>状态：</label>
+                            <select class="small bLeft"  name="status">
+                                <option <eq name="vo.status" value="1" >selected</eq> value="1">启用</option>
+                                <option <eq name="vo.status" value="0" >selected</eq> value="0">禁用</option>
+                            </select>
+			</div>
+			<div class="unit">
+                            <label>备  注：</label>
+                            <textarea class="large bLeft"  name="remark" rows="5" cols="57">{$vo.remark}</textarea>
+			</div>
+		</div>
+		<div class="formBar">
+                    <ul>
+			<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+                        <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+                    </ul>
+		</div>
+	</form>
+</div>

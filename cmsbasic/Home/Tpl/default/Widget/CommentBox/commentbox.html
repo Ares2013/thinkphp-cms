@@ -1,0 +1,55 @@
+<div class="lx_list">
+	<h3 class="lxlist_bt" ><span class="star_{$avg}">（{$avg}/ 5.0）</span>产品反馈</h3>
+	<volist name="comments" id="vo">
+		<div class="fklist_box">
+			<div class="fklis">
+				<h3 class="fklis_nr"><span class="star_<if condition="$vo['rank']">{$vo.rank}<else />0</if>"></span><if condition="$vo['username']">{$vo.username}<else />{$vo.ip_address}</if></h3>
+				<p class="time">{$vo.add_time}</p>
+				<p class="fkjj">
+					{$vo.content}
+				</p>
+			</div>
+		</div>
+	</volist>
+	<div class="cl"></div>
+</div>
+<div class="discuss">
+	<h2> 我要评论</h2>
+	<h3><span>(一般)</span>总体评价</h3>
+	<form class="discuss_form" action="{:U('Comment/add')}" method="post" name="commentForm" id="commentForm">
+	    <p style="height:30px;">
+			<label style="width:150px;">用户名</label>
+			&nbsp;
+			<label>
+				<if condition="$user_name">
+					{$Think.session.user_name}
+				<else />
+					匿名
+				</if>
+			</label>
+		</p>
+		<p>
+			<div id="xzw_starSys" class="starbox" style="width:400px;">
+			<div class="whbt" style="width:120px;">&nbsp;&nbsp;评价:&nbsp;</div>
+			<div id="xzw_starBox">
+				<ul class="star" id="star">
+					<li><a href="javascript:void(0)" title="1" class="one-star">1</a></li>
+					<li><a href="javascript:void(0)" title="2" class="two-stars">2</a></li>
+					<li><a href="javascript:void(0)" title="3" class="three-stars">3</a></li>
+					<li><a href="javascript:void(0)" title="4" class="four-stars">4</a></li>
+					<li><a href="javascript:void(0)" title="5" class="five-stars">5</a></li>
+				</ul>
+				<div class="current-rating" id="showb"></div>
+			</div>
+			<!--评价文字-->
+			<div class="description">0</div>
+			<input type="hidden" name="comment_rank" value="0" />
+			<div class="cl"></div>
+		</div>
+		</p>
+		<p class="discuss_rea"><label  style="vertical-align:top;width:150px;">内&nbsp;容</label><textarea name="content"></textarea></p>
+		<input type="hidden" name="comment_type" value="{$comment_type}" />
+        <input type="hidden" name="id_value" value="{$id}" />
+		<div class="discuss_bon"><input type="submit" value="" /></div>
+	</form>
+</div>

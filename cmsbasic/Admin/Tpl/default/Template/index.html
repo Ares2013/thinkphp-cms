@@ -1,0 +1,68 @@
+<div class="page">
+	<style>
+		.table_block {
+			border: 1px solid #CCCCCC;
+			float: left;
+			margin: 0 5px 10px;
+		}
+		.table_block th {
+			color: #777777;
+			font-weight: normal;
+			padding: 4px 8px;
+			text-align: right;
+		}
+		.table_block td, .table_block th {
+			border-bottom: 1px solid #EEEEEE;
+		}
+	</style>
+	<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this,navTabAjaxDone);">
+			<div class="pageFormContent" layoutH="58">
+			<div class="tabs">
+				<div class="tabsHeader">
+					<div class="tabsHeaderContent">
+						<ul>
+							<li class="selected"><a href="#"><span>模板中心</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabsContent" >
+					<div>
+						<volist name="template_list" id="val">
+						<div class="table_block">
+							<div class="pad-10">
+							<table>
+								<tr>
+								  <td><img src="{$val.preview}" width="120" height="160" style="border:1px #E4E4E4 solid;" /></td>
+								  <td valign="top">
+										<table>
+											<tr><th align="right"><input type="radio" name="dirname" value="{$val.dirname}" <if condition="$setting_template eq $val['dirname']">checked="checked"</if> />&nbsp;&nbsp;</th><td width="160"><if condition="$setting_template eq $val['dirname']"><span class="red">默认</span><else/><a href="{:U('template/index',array('dirname'=>$val['dirname']))}" class="blue">设为默认</a></if></td></tr>
+											<tr><th align="right">模板文件夹：</th><td>{$val.dirname}</td></tr>
+											<tr><th align="right">模板名称：</th><td>{$val.name}</td></tr>
+											<tr><th align="right">模板作者：</th><td>{$val.author}</td></tr>
+											<tr><th align="right">版本：</th><td>{$val.version}</td></tr>
+										</table>
+								  </td>
+								</tr>
+							</table>
+							</div>
+						</div>
+						</volist>
+					</div>
+				</div>
+				<div class="tabsFooter">
+					<div class="tabsFooterContent"></div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>

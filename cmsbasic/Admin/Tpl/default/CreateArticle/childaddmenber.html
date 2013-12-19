@@ -1,0 +1,96 @@
+<form id="pagerForm" action="__URL__/childaddmenber/" method="post">
+	<input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+	<input type="hidden" name="_sort" value="{$_REQUEST._sort}"/>
+	<input type="hidden" name="id" value="{$_REQUEST.id}"/>
+</form>
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="__URL__/childaddmenber/id/{$_REQUEST.id}" method="post">
+	<div class="searchBar">
+		<ul class="searchContent">
+			<li>
+                            <label>Task的名字:</label><span class="info" style="float: left;display: block;line-height: 21px;color: red;font-weight: bold;">{$tname}</span>
+			</li>
+                        <li>
+			成员:<span class="info" style="color: red;font-weight: bold;">{$membeName}</span>
+			</li>
+                        <li>
+			编号:<span class="info" style="color: red;font-weight: bold;">{$membe}</span>
+			</li>                        
+		</ul>
+            <ul class="searchContent">
+                <li>
+                    <label>英文名：</label>
+                    <input type="text" name="usesrname" class="medium" value="{$_POST['usesrname']}">
+                </li>
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+            </ul>
+		<div class="subBar">
+			<ul>
+				
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+    <form name="form1" method="post" action="__URL__/updatemenber/navTabId/TaskMenber" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxMenu)">
+	<input type="hidden" name="taskid" value="{$taskid}">
+        <input type="hidden" value="closeCurrent" name="callbackType">
+       
+        <div class="panelBar">
+		<ul class="toolBar">                    
+                    <li><a class="add" href="__URL__/updatemenber/taskid/{$taskid}/navTabId/CreateTask/st/{$st}/et/{$et}/" posttype="string" rel="ids" target="selectedTodo" calback="navTabAjaxMenu" title="你确定要对{$tname}添加成员了吗？" warn="请选择对应的人"><span>添加</span></a></li>
+                    <li class="line">line</li>
+                    <li><a class="delete" href="__URL__/DeleteMember/taskid/{$taskid}/navTabId/CreateTask/st/{$st}/et/{$et}/" posttype="string" rel="ids" target="selectedTodo" calback="navTabAjaxMenu" title="你确定要对{$tname}删除成员了吗？" warn="请选择对应的人"><span>删除</span></a></li>
+                    <!--<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存数据</button></div></div></li>-->
+                    <li class="line">line</li>
+                    <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="138">
+		<thead>
+                    <tr>
+                                <th width="10">
+                                <input type="checkbox" group="ids" class="checkboxCtrl" />
+                                </th>
+                                <th width="20">编号</th>
+                                <th width="80">英文名字</th>
+				<th width="80">工号</th>
+                                <!--<volist name="days_list" id="dlie">
+                                    <th width="25" align="center">{$dlie['days']}</th>
+                                </volist>-->
+				<th width="80" align="center">邮箱地址</th>
+				<th width="80" align="center">状态</th>
+			</tr>
+		</thead>
+		<tbody>
+                <volist id="vo" name="list">
+                        <tr target="sid_user" rel="{$vo.uid}">
+                                <td><input name="ids" type="checkbox" value="{$vo.uid}" />
+                                </td>
+                                <td>{$vo.uid}</td>
+                                <td>{$vo.uname}</td>
+                                <!--<td><a href="__URL__/expatiation/uid/{$vo['uid']}/un/{$vo.uname}"title="[{$vo.uname}]的其他任务信息" target="dialog" rel="childresult" mask="true" width="800" height="400" calback="navTabAjaxMenu">详细任务分配</a></td>-->
+                                <td>{$vo.unumber}</td>
+				<!--<volist name="days_list" id="dlie">
+                                    <td>
+                                        <input class="number textInput valid" type="text" value="" name="user_{$vo.uid}[{$key}]" size="1"><a class="btnLook" href="__URL__/expatiation/uid/{$vo['uid']}/un/{$vo.uname}/su/{$dlie.unix}" target="dialog" rel="childresult" mask="true" width="800" height="400">[{$vo.uname}]的其他任务信息</a>
+                                    </td>
+                                </volist>-->
+				<td>{$vo.uemail}</td>
+				
+				<td>{$vo['ustatus']|showStatusImg=$vo['id']}</td>
+			</tr>
+                </volist>
+		</tbody>
+	</table>
+        
+        </form>
+    <div class="panelBar">
+		<div class="pages">
+			<span>共{$totalCount}条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	</div>
+</div>

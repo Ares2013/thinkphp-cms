@@ -1,0 +1,67 @@
+<div class="page">
+	<div class="pageContent">
+	
+	<form method="post" action="__URL__/update/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, navTabAjaxDone);">
+		<div class="pageFormContent" layoutH="58">
+		    <div class="tabs">
+				<div class="tabsHeader">
+					<div class="tabsHeaderContent">
+						<ul>
+							<li class="selected"><a href="#"><span>修改广告</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabsContent" >
+					<div>
+			<input type="hidden" name="ad_id" value="{$vo.ad_id}" />
+			<input type="hidden" name="callbackType" value="closeCurrent" />
+			<div class="unit">
+				<label>广告名称：</label>
+				<input type="text" class="required" size="30" name="ad_name" value="{$vo.ad_name}"/>
+			</div>			
+			<div class="unit">
+				<label>广告连接：</label>
+				<input type="text" class="required" size="30" name="ad_link" value="{$vo.ad_link}" />
+			</div>
+			<div class="unit">
+				<label>广告位：</label>
+				<select name="position_id">
+					<option value="0">选择广告位</option>
+					<volist name="list" id="vl">
+						<option value="{$vl.position_id}" <eq name="vo['position_id']" value="$vl['position_id']">selected</eq>>{$vl.position_name}</option>
+					</volist>
+				</select>
+			</div>
+			<div class="unit">
+				<label>预览图片：</label>
+				<notempty name="vo.ad_code">
+					<a target="_blank" href="__PUBLIC__/Upload/adv/{$vo.ad_code}">
+						<img src="__PUBLIC__/Upload/adv/{$vo.ad_code}" style="width:40px;height:40px;" />
+					</a>
+				<a href="__URL__/delimg/id/{$vo.ad_id}" target="ajaxTodo" title="你确定要删除吗？">删除图片</a>
+				<else/>
+				<input type="file" name="img" />
+				</notempty>
+			</div>
+			<div class="unit">
+				<label>排序值：</label>
+				<input type="text" name="sort" size="20" value="{$vo.sort}" /> 值越大，显示排名越靠前
+			</div>
+		</div>
+				</div>
+				<div class="tabsFooter">
+					<div class="tabsFooterContent"></div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>

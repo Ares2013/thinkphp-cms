@@ -1,0 +1,1 @@
+<?php	return array ( 1 => '超级管理员', 2 => 'Anne编辑', 3 => 'AutoIT组', );?>

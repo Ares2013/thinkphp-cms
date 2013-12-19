@@ -1,0 +1,126 @@
+<div class="page">
+	<div class="pageContent">
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#elm1').xheditor({upLinkUrl:"/Admin/index.php/Public/xupload",upLinkExt:"zip,rar,txt,doc,xls",upImgUrl:'/Admin/index.php/Public/xupload',upImgExt:"jpg,jpeg,gif,png",upFlashUrl:'/Admin/index.php/Public/xupload',upFlashExt:"swf",upMediaUrl:'/Admin/index.php/Public/xupload',upMediaExt:"wmv,avi,wma,mp3,mid"});
+		});
+	</script>
+	
+	<form method="post" action="__URL__/update/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this,navTabAjaxDone);">
+			<div class="pageFormContent" layoutH="58">
+			<div class="tabs">
+				<div class="tabsHeader">
+					<div class="tabsHeaderContent">
+						<ul>
+							<li class="selected"><a href="#"><span>修改文章</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabsContent" >
+					<div>
+		<input type="hidden" name="article_id" value="{$vo.article_id}" />
+		<input type="hidden" name="callbackType" value="closeCurrent" />
+			<div class="unit">
+				<label>标题：</label>
+				<input type="text" class="required" size="60" name="title" value="{$vo.title}"/>
+			</div>
+			<div class="unit">
+				<label>所属父类：</label>
+				<SELECT name="cat_id">
+					<volist name="list" id="category">
+						<option value="{$category.cat_id}" <eq name="category.cat_id" value="$vo.cat_id">selected</eq>>{$category.cat_name}</option>
+					</volist>
+				</SELECT>
+			</div>
+			<div class="unit">
+				<label>关键字：</label>
+				<input type="text" name="keywords" size="60" value="{$vo.keywords}"/>
+			</div>
+			<div class="unit">
+				<label>作者：</label>
+				<input type="text" name="author" size="60" value="{$vo.author}"/>
+			</div>
+			<div class="unit">
+				<label>来源：</label>
+				<input type="text" name="come_from" size="60" value="{$vo.author}" />
+			</div>
+			<div class="unit">
+				<label>外部连接：</label>
+				<input type="text" class="url" name="link" size="60" value="{$vo.link}"/>
+			</div>
+			<div class="unit">
+				<label>所属城市：</label>
+				<select class="combox" name="province" ref="w_combox_city" refUrl="__APP__/Region/ajaxRegion/pid/{value}">
+					<option value="all">请选择</option>
+					<volist name="regionlist" id="re">
+                                            <option value="{$re.region_id}" <if condition="$vo['province'] eq $re['region_id']"> selected="selected" </if>>{$re.region_name}</option>
+					</volist>
+				</select>
+				<select class="combox" name="city" id="w_combox_city" ref="w_combox_area" refUrl="__APP__/Region/ajaxRegion/pid/{value}">
+					<option value="all">请选择</option>
+                                        <volist name="citylist" id="ci">
+                                            <option value="{$ci.region_id}" <if condition="$vo['city'] eq $ci['region_id']"> selected="selected" </if>>{$ci.region_name}</option>
+					</volist>
+				</select>
+				<select class="combox" name="area" id="w_combox_area">
+					<option value="all">请选择</option>
+                                        <volist name="arealist" id="ar">
+                                            <option value="{$ar.region_id}" <if condition="$vo['area'] eq $ar['region_id']"> selected="selected" </if>>{$ar.region_name}</option>
+					</volist>
+				</select>
+			</div>
+
+			<div class="unit">
+				<label>简要：</label>
+				<textarea name="description" rows="8" cols="60">{$vo.description}</textarea>
+			</div>
+			<div class="unit">
+				<label>预览图片：</label>
+				<notempty name="vo.file_url">
+				<img src="__PUBLIC__/Upload/article/{$vo.file_url}" />
+				<a href="__URL__/delimg/id/{$vo.article_id}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？">删除图片</a>
+				<else/>
+					<input type="file" name="img" />
+				</notempty>
+			</div>
+			<div class="unit">
+				<label>状态：</label>
+				<select name="status">
+					<option <eq name="vo.status" value="1" >selected</eq> value="1">启用</option>
+					<option <eq name="vo.status" value="0" >selected</eq> value="0">禁用</option>
+				</select>
+			</div>
+			<div class="unit">
+				<label>排序值：</label>
+				<input type="text" name="sort" size="30" value="{$vo.sort}"/>
+			</div>
+			<!--<div class="unit">
+				<label>URL重写值：</label>
+				<input type="text" name="rewrite" size="30" value="{$vo.rewrite}"/>
+			</div>
+			<div class="unit">
+				<label>使用模板：</label>
+				<input type="text" name="template" size="30" value="{$vo.template}"/>
+			</div>-->					
+			<div class="unit">
+				<label>内容：</label>
+				<textarea id="elm1" class="editor" name="content" rows="16" cols="91">{$vo.content}</textarea>
+			</div>
+		</div>
+				</div>
+				<div class="tabsFooter">
+					<div class="tabsFooterContent"></div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>

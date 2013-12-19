@@ -1,0 +1,56 @@
+<tagLib name="fanwe" />
+<div class="page">
+	<div class="pageContent">
+	
+	<form method="post" action="__URL__/insert/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, navTabAjaxDone);">
+		<div class="pageFormContent" layoutH="58">
+			<div class="tabs">
+				<div class="tabsHeader">
+					<div class="tabsHeaderContent">
+						<ul>
+							<li class="selected"><a href="#"><span>添加前台菜单</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabsContent" >
+					<div>
+						<input type="hidden" name="create_time" value="<?php echo time() ?>"/>
+						<input type="hidden" name="callbackType" value="closeCurrent" />
+						<div class="unit">
+							<label>{$Think.lang.NAME}:</label>
+							<input type="text" class="required" size="40" maxlength="120" alt="请输入名称" name="name"/>
+						</div>
+						<div class="unit">
+							<label>{$Think.lang.CID}:</label>
+							<fanwe:select id='cid' name='cid' textfield='name' valuefield='id' options='cate_list' />
+						</div>
+						<div class="unit">
+							<label>{$Think.lang.URL}:</label>
+							<input type="text" class="" size="40" maxlength="120"  name="url"/>
+						</div>
+						<div class="unit">
+							<label>{$Think.lang.TARGET}</label>
+							<input type="radio" name="target" value="0" checked="checked" /> {$Think.lang.TARGET_0}&nbsp;&nbsp;
+							<input type="radio" name="target" value="1" /> {$Think.lang.TARGET_1}
+						</div>
+						<div class="unit">
+							<label>排序值：</label>
+							<input type="text" name="sort" size="30" value="0" />
+						</div>
+					</div>
+				</div>
+				<div class="tabsFooter">
+					<div class="tabsFooterContent"></div>
+				</div>
+			</div>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>

@@ -1,0 +1,139 @@
+                
+<form id="pagerForm" action="demo/database/dwzOrgLookup2.html">
+	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" method="post" action="demo/database/dwzOrgLookup2.html" onsubmit="return dwzSearch(this, 'dialog');">
+	<div class="searchBar">
+		
+		<ul class="searchContent">
+			<li>
+			Task名字为：<a href="javascript:void(0);" style="color: red;font-weight: bold;">{$_REQUEST.tt}</a>
+			</li>
+                        <li>
+			任务分配日期：<a href="javascript:void(0);" style="color: red;font-weight: bold;">{$_REQUEST.su|date="Y-m-d",###}</a>
+			</li>
+		</ul>
+                <div class="subBar">
+			<ul>
+				<!--<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>-->
+				<li><div class="button"><div class="buttonContent"><button type="button" multLookup="orgId" warn="请选择至少一个成员">确定让他们参与</button></div></div></li>
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+
+	<table class="table" layoutH="258" targetType="dialog" width="100%">
+		<thead>
+			<tr>
+				<th width="30"><input type="checkbox" class="checkboxCtrl" group="orgId" /></th>
+				<th orderfield="orgName">成员名字</th>
+				<th orderfield="orgNum">任务工作量</th>
+				<th orderfield="leader">成员工号</th>
+                                <th>工作总量(详情请向下查看)</th>
+				<th orderfield="creator">说明</th>
+			</tr>
+		</thead>
+		<tbody>
+                <volist name="user_list" id="ulist">
+                        <tr>
+				<td><input id="Num_{$ulist['id']}" type="checkbox" name="orgId" value="{orgid:<?php echo "'".$ulist['id']."'";?>, orgName:'', orgNum:'0'}"/></td>
+				<td>{$ulist.account}</td>
+                                <td><input type="text" value="" class="number textInput valid" onblur="ares(this.defaultValue,$(this).val(),{$ulist['id']},{$ulist['total']})"></td>
+				<td>{$ulist.job_number}</td>
+                                <td>{$ulist.total}</td>
+				<td>任务量的分配请先查看此成员其他任务</td>
+			</tr>
+                </volist>
+			
+		</tbody>
+	</table>
+
+</div>
+<div class="panel collapse" defH="140">
+		<h1>参与“{$_REQUEST.tt}”的成员在“{$_REQUEST.su|date="Y-m-d",###}”这天其他任务分配情况</h1>
+		<div class="panelBar">
+                        <ul class="toolBar">
+                                <!--<li><a class="add" href="__URL__/childadd/pid/{$projectid}/tid/{$teamid}/cid/{$createid}/pname/{$pname}" target="dialog" mask="true"><span>新增</span></a></li>-->
+                                <!--<li><a class="edit" href="__URL__/childedit/id/{sid_node}" target="dialog" mask="true" warn="请选择节点"><span>修改</span></a></li>-->
+                                <li><a class="delete" href="__URL__/expatiation_delet/id/{sid_node}/pid/{$_REQUEST.taskid}/del_time/{$_REQUEST.su}/st/{$_REQUEST.st}/et/{$_REQUEST.et}" target="ajaxTodo" calback="navTabAjaxMenu" title="你确定要删除吗？" warn="请选择节点"><span>删除</span></a></li>
+                                <li class="line">line</li>
+                                <!--<li><a class="delete" href="__URL__/expatiation_delet/pid/{$_REQUEST.taskid}" posttype="string" rel="deleids" target="selectedTodo" calback="navTabAjaxMenu" title="你确定要批量删除吗？" warn="请选择节点"><span>批量删除</span></a></li>-->
+                        </ul>
+                    <table class="table" layoutH="288" width="100%">
+                            <thead>
+                                    <tr>
+                                            <th width="30"><input type="checkbox" class="checkboxCtrl" group="deleids" /></th>
+                                            <th>编号</th>
+                                            <th>成员名字</th>
+                                            <th>任务工作量</th>
+                                            <th>Task名称</th>
+                                            <th>Task开始时间</th>
+                                            <th>Task结束时间</th>
+                                            <th>操作说明</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="task_list" id="tlist">
+                                    <tr target="sid_node" rel="{$tlist['id']}_{$tlist['uid']}_{$tlist['taskid']}_{$tlist['task_num']|default=0}">
+                                            <td><input type="checkbox" name="deleids" value="{$tlist['id']}"/></td>
+                                            <td>{$key}</td>
+                                            <td>{$tlist.uname_e}</td>
+                                            <!--<td><input type="text" value="" class="number textInput valid" onblur="ares(this.defaultValue,$(this).val(),{$ulist['id']})"></td>-->
+                                            <td><input type="text" class="number textInput valid" name="number_{$key}" value="{$tlist['task_num']}" onblur="ares_edit(this.defaultValue,$(this).val(),{$tlist['id']})"></td>
+                                            <td>{$tlist.task_title}</td>
+                                            <td>{$tlist.schedule_start|date="Y/m/d",###}</td>
+                                            <td>{$tlist.schedule_end|date="Y/m/d",###}</td>
+                                            <td>编辑后如未更新请刷新</td>
+                                    </tr>
+                            </volist>
+                            </tbody>
+                    </table>
+                </div>
+                    
+	</div>		
+<script type="text/javascript">
+    function ares(de_value,editv,id,total){
+        var uid=id;
+        var defaultvalue=de_value;
+        var editvalue=editv;
+        var totals=total;
+        var inpid="#Num_"+uid;
+        var areschar="{orgid:'"+uid+"', orgName:'', orgNum:'"+editvalue+"'}";
+        
+        if(editvalue >1){
+            alert("请注意不要超过1个工作单位");
+        }else{
+            if(editvalue !== ''){
+            if((parseFloat(editvalue)+parseFloat(totals)) >1){
+                alert("抱歉,请注意工作总量");
+              }else{
+                  if(defaultvalue == editvalue){
+                
+                    }else{
+                        $(inpid).attr("value",areschar);
+                    }
+              }  
+            }else{
+                alert("请注意您填写的");
+            }
+           }
+        }
+    
+    function ares_edit(edit_default,editv,id){
+        var tid = id;
+        var defaultvalue = edit_default;
+        var editvalue=editv;
+        var app="__APP__"+'/CreateArticle/aresUpdate';
+        if(editvalue !== '' && defaultvalue != editvalue){
+            //alert(defaultvalue+"编辑功能后期更近");$post(url, [data], [callback], [type])
+            $.post(app,{tid:tid,editv:editvalue});
+        }
+    }
+</script>

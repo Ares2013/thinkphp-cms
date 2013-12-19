@@ -1,0 +1,114 @@
+/*
+主题名称: 河北软件职业技术学院
+URI: the-theme's-homepage
+描述: a-brief-description
+作者: 我和你网络公司
+作者 URI: http://www.365woheni.com
+模板: 在这里可以提示它的父级模板
+版本: 版本号
+
+[目录表] 
+
+	0- import
+	1- global
+	2- headings
+	3- spacing
+
+*/
+
+/* =0 Reset
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+/* =1 Global
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*html{
+	filter:gray;
+}*/
+body {
+	font: 13px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	margin: 0px, auto;
+	text-align: center;
+	background: #ffffff;
+}
+.container_24 {
+	text-align: left;
+	margin: 0px, auto;
+	height: auto;
+	color: #FFF;
+	width: 960px;
+}
+a:focus {
+	outline: 1px dotted invert;
+}
+a {
+	text-decoration: none;
+	color: #014946;
+}
+a:hover {
+	color: #EBB200;
+}
+hr {
+	border: 0 #ccc solid;
+	border-top-width: 1px;
+	clear: both;
+	height: 0;
+}
+/* =2 Headings
+----------------------------------------------------------------------------------------------------*/
+
+h1 {
+	font-size: 25px;
+	color: #000;
+}
+h2 {
+	color: #333;
+	font-size: 23px;
+}
+h3 {
+	font-style: normal;
+	font-family: "宋体";
+	font-size: 14px;
+}
+h4 {
+	font-size: 19px;
+}
+h5 {
+	font-family: "宋体";
+	color: #666;
+	font-size: 16px;
+}
+h6 {
+	font-size: 15px;
+}
+/* =3 Spacing
+----------------------------------------------------------------------------------------------------*/
+
+ol {
+	list-style: decimal;
+}
+ul {
+	list-style: none;
+}
+li {
+	margin-left: 0px;
+}
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+	margin-bottom: 0px;
+}
+#IE6toDead {
+	width: 99%;
+	height: 20px;
+	margin: 0 auto;
+	padding: 2px;
+	display: none;
+	border: 1px solid #cccccc;
+	color: #000000;
+	font: bold 12px/20px Arial;
+	text-align: center;
+}
+#IE6toDead a {
+	color: #cccccc;
+	font-weight: 700;
+	text-decoration: underline;
+	margin: 0 2px
+}

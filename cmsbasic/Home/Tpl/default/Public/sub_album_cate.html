@@ -1,0 +1,53 @@
+<if condition="$svars['s'] neq 'hot' and $svars['s'] neq 'new'">
+<div class="tags-wrap ">
+	<ul class="pix-tags pix-list-tags">
+		<volist name="alclist" id="vo">
+			<li>
+				<a <if condition="$svars['c'] eq $vo['id']"> class="current"</if>  href="{:U('Index/cph',array('c'=>$vo['id']))}">
+					<em>
+					</em>
+					{$vo.name}
+				</a>
+			</li>
+		</volist>
+	</ul>
+	<div class="cph_tag">
+		<ul class="pix-tag">
+			<volist name="hot_index_tag" id="vo">
+			<li>
+				<a class="current" href="">
+					<em>
+					</em>
+					{$vo.tag_name}
+				</a>
+			</li>
+			</volist>
+		</ul>
+	</div>
+	<if condition="!empty($alc)">
+		<div class="cph_anc">
+			<dl>
+				<dt><h3>版主：</h3></dt>
+				<dd>
+					<a href="{:U('User/index',array('uid'=>$alc['b_uid']))}">
+					{$alc.user.user_name}&nbsp;{$alc.user.pay_points}
+					</a>
+				</dd>
+			</dl>
+			<div class="cph_gao">
+				<h3></h3>
+                <ul>
+                	<li>{$alc.notice|h}</li>
+                    
+                </ul>
+			</div>
+			<div class="cph_topic">
+                <h2>板块今日话题:</h2>
+                <div class="topic_nav"><em>1</em><a href="#">随心拍、随心的分享、随心的快乐</a></div>
+                <div class="topic_nav"><em>1</em><a href="#">随心拍、随心的分享、随心的快乐</a></div>
+		    </div>
+		</div>
+		
+	</if>
+</div>
+</if>

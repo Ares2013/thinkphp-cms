@@ -1,0 +1,105 @@
+<form id="pagerForm" action="__URL__" method="post">
+	<input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="title" value="{$_REQUEST.title}"/>
+	<input type="hidden" name="cat_id" value="{$_REQUEST.cat_id}"/>
+</form>
+
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+		<input type="hidden" name="pageNum" value="1"/>
+		<div class="searchBar">
+			<ul class="searchContent">
+				<li>
+                                    <label>标题：</label>
+                                    <input type="text" name="title" value="{$_REQUEST.title}"/>
+				</li>
+				<li>
+                                    <label>Team分类：</label>
+                                    <select name="gid">
+                                        <option value="">选择分类</option>
+                                        <volist name="glist" id="vo">
+                                            <option value="{$vo.gid}" <eq name="vo.gid" value="$_REQUEST.gid">selected</eq>>{$vo.name}</option>
+                                        </volist>
+                                    </select>
+				</li>
+                                <li>
+                                    <label>按时间查询:</label>
+                                    <input type="text" name="startDate" class="date textInput valid" size="30" value="{$_REQUEST.startDate}"/>
+				</li>
+                                <li>
+                                    <label>时间到：</label>
+                                    <input type="text" name="endDate" class="date textInput valid" size="30" value="{$_REQUEST.endDate}"/>
+				</li>
+			</ul>
+			<div class="subBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+				</ul>
+			</div>
+		</div>
+		</form>
+	</div>
+	
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+				<li><a class="edit" href="__URL__/Manpower/cat_id/{$_REQUEST.cat_id|default=0}/id/{sid_node}" rel="ids" target="navTab" width="800" height="400" mask="true" warn="请选择一条记录"><span>人力分析</span></a></li>
+				<!--<li><a class="add" href="__URL__/summarize/cat_id/{$_REQUEST.cat_id}/id/{sid_list}" target="navTab" mask="true" warn="请选择一条记录"><span>task总结</span></a></li>-->
+                                <li><a class="add" href="__URL__/summarize/id/" target="navTab" width="800" height="400" mask="true" warn="请选择单个task"><span>task总结</span></a></li>
+                                <li class="line">line</li>
+                                <li><a class="edit" href="demo/pagination/dialog2.html?uid={sid_obj}" target="dialog" mask="true"><span>其他扩展</span></a></li>
+			</ul>
+		</div>
+
+		<table class="table" width="100%" layoutH="114">
+			<thead>
+			<tr>
+				<th width="5">
+					<input type="checkbox" group="ids" class="checkboxCtrl" />
+				</th>
+				<th width="10">编号</th>
+				<th width="80">project名</th>
+				<th width="100">project类型</th>
+				<th width="80">所属组名</th>
+				<th width="80">添加者</th>
+				<th width="100">添加时间</th>
+				<th width="60">是否完成</th>
+				<th width="60">task总数</th>
+                                <th width="60">状态</th>
+			</tr>
+			</thead>
+                          
+			<tbody>
+			<volist id="vo" name="list">
+				<tr target="sid_node" rel="{$vo['id']}">
+					<td>
+						<input name="ids"  type="checkbox" value="{$vo['id']}" />
+					</td>
+					<td>{$vo['id']}</td>
+                                        <td><a href="__URL__/taskresult/pid/{$vo['id']}/" target="navTab" rel="CreateTask">{$vo['title']}</a></td>
+					<td><if condition="$vo['type'] eq 1">New<elseif condition="$vo['type'] eq 2" /> New 1<else />其他未知类型</if></td>
+					<td>{$vo['author']}</td>
+					<td>{$vo['c_name_e']}({$vo['c_name_z']})</td>
+					<td>{$vo['c_time']|date="Y-m-d H:i:s",###}</td>
+					<td></td>
+					<td>{$vo['total']}</td>
+					<td>{$vo['status']|showStatusImg=$vo['article_id']}</td>
+					
+				</tr>
+			</volist>
+			</tbody>
+		</table>
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$totalCount}条</span>
+			</div>
+			<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+		</div>
+	</div>
+</div>
+
+<!--<img src="__APP__/Images/pie/hbar/{$id}/read/{$_session['authId']}?<?php echo rand(10000,999999);?>" />
+    <img src="__APP__/Images/hbar/hbar/{$id}/read/{$_session['authId']}?<?php echo rand(10000,999999);?>"/>
+    <img src="__APP__/Images/line/hbar/{$id}/read/{$_session['authId']}"/>
+    <img src="__APP__/Images/zidingyiA?<?php echo rand(10000,999999);?>" />-->

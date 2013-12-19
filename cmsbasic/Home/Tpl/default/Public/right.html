@@ -1,0 +1,29 @@
+<div class="details_right">
+	<div class="back"><a href="{:U('Travel/productSearch')}">返回产品筛选页面</a></div> 
+	 <div class="cpss_box">
+		<a <if condition="$cur neq 'flow_cart' and $cur neq 'flow_anonymouscheck' and $cur neq 'flow_done'">class="ss_1 cpsscurrent"<else /> class="ss_1"</if> href="#">产品搜索</a>
+		<a <if condition="$cur eq 'flow_cart' or $cur eq 'flow_anonymouscheck'">class="ss_2 cpsscurrent"<else /> class="ss_2"</if> href="#">行程</a>
+		<a <if condition="$cur eq 'flow_done'">class="ss_3 cpsscurrent"<else /> class="ss_3"</if> href="#">提交</a>
+	</div>
+	<div class="add_cp" title="{$cur}">
+		<if condition="$cur eq 'travel_ideascenter' or $cur eq 'travel_ideascenteradd'">
+			<a href="{:U('Travel/ideasAdd')}">添加创意</a>
+		<elseif condition="$cur eq 'travel_feedbacks' or $cur eq 'travel_feedbacksadd'" />
+			<a href="{:U('Travel/feedBacksAdd')}">添加反馈</a>
+		<elseif condition="$cur eq 'travel_view'" />
+			<a href="javascript:addToCart({$vo.goods_id},0,'/flow-AddToCart.html');">给您的旅行添加产品</a>
+		<else />
+			<a href="{:U('Travel/productsearch')}">继续选择行程</a>
+		</if>
+	</div>
+	<div class="online_gt">
+		<h2>在线联系</h2>
+		<div class="zxgt">
+			<ul>
+				<li><a class="ldgt" href="#"><em></em>来电沟通</a></li>
+				<li><a class="zxlt" href="tencent://message/?uin=1652771105"><em></em>在线聊发</a></li>
+				<li><a class="fsyj" href="mailto:birke_int4@hotmail.com?subject=网站来访客户联系"><em></em>发送邮件</a></li>
+			</ul>
+		</div>
+	</div>  
+</div>

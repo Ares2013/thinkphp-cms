@@ -1,0 +1,47 @@
+<tagLib name="fanwe" />
+<div class="page">
+	<div class="pageContent">
+	
+	<form method="post" action="__URL__/update/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, navTabAjaxDone);">
+		<div class="pageFormContent" layoutH="58">
+			<div class="tabs">
+				<div class="tabsHeader">
+					<div class="tabsHeaderContent">
+						<ul>
+							<li class="selected"><a href="#"><span>编辑分类</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabsContent" >
+					<div>
+						<input type="hidden" name="id" value="{$vo.id}" />
+						<input type="hidden" name="callbackType" value="closeCurrent" />
+						<div class="unit">
+							<label>{$Think.lang.NAME}:</label>
+							<input type="text" class="required" size="40" maxlength="120" alt="请输入分类名称" name="name" value="{$vo.name}"/>
+						</div>
+						<div class="unit">
+							<label>{$Think.lang.PARENT_ID}:</label>
+							<fanwe:select id='parent_id' name='parent_id' first='{$Think.lang.ROOT_ID}' firstvalue='0' textfield='name' valuefield='id' selected="vo['parent_id']" options='cate_list' />
+						</div>
+						<div class="unit">
+							<label>排序值：</label>
+							<input type="text" name="sort" size="30" value="{$vo.sort}" />
+						</div>
+					</div>
+				</div>
+				<div class="tabsFooter">
+					<div class="tabsFooterContent"></div>
+				</div>
+			</div>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>

@@ -1,0 +1,1 @@
+<?phpreturn array (  'DB_HOST' => 'localhost',//数据库服务器地址  'DB_PWD' => '',//连接密码  'DB_NAME' => 'cmsbasic',//数据库名字  'DB_USER' => 'root',//进入数据库的用户  'DB_PORT' => '3306',//端口号  'DB_PREFIX' => 'lhl_',//数据库前缀  'DEFAULT_THEME' => 'default',  'TMPL_ACTION_SUCCESS' => 'Public:success',  'TMPL_ACTION_ERROR' => 'Public:error',); ?>

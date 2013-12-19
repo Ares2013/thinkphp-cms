@@ -1,0 +1,21 @@
+	<!--<div class="grid-unit sub">
+        <ul>
+			<volist name="artclist" id="vo">
+				<if condition="$i gt 1">
+					<li <if condition="($cur eq 'article_index') and ($cat['cat_id'] eq $vo['cat_id'])"> class="selected"</if> <if condition="$i eq 2"> class="first" </if>>
+						<a alt="{$vo.cat_name}" href="{:U('Article/index',array('id'=>$vo['cat_id']))}"><em>›</em>{$vo.cat_name}</a>
+					</li>
+				</if>
+			</volist>
+			<li <if condition="$cur eq 'friendlink_index'"> class="selected"</if>><a href="{:U('Friendlink/index')}"><em>›</em>友情连接</a></li>
+      </ul>
+    </div>-->
+<volist name="artclist" id="vo">
+<h1 class="title22">{$vo.cat_name}</h1>
+	<div class="content44" style="display:none">
+		<div class="grid-unit sub">
+			<ul>
+			</ul>
+		</div>
+	</div>
+</volist>

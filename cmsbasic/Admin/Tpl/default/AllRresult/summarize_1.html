@@ -1,0 +1,151 @@
+<style type="text/css">
+	ul.rightTools {float:right; display:block;}
+	ul.rightTools li{float:left; display:block; margin-left:5px}
+</style>
+
+<div class="pageContent" style="padding:5px">
+	<div class="panel" defH="30">
+		<h1>task的总结</h1>
+		<div>
+			日期：<input type="text" class="date" name="patientNo" />
+			<ul class="rightTools">
+				<li><a class="button" target="dialog" href="demo/pagination/dialog1.html" mask="true"><span>创建病例</span></a></li>
+				<li><div class="buttonDisabled"><div class="buttonContent"><button>病人治疗流程</button></div></div></li>
+				<li><div class="buttonDisabled"><div class="buttonContent"><button>按病人编号检索病例</button></div></div></li>
+				<li><div class="buttonDisabled"><div class="buttonContent"><button>从病人列表选取病例</button></div></div></li>
+			</ul>
+                </div>
+             <table class="table" width="99%" layoutH="675">
+		<thead>
+			<tr>
+				<th width="20" align="center" >本月周数</th>
+				<th width="120" align="center">Project总数</th>
+				<th width="80" orderField="accountType">Task总数</th>
+				<th width="130" orderField="accountCert">参入的IDL总和</th>
+				<th width="60" align="center" orderField="accountLevel">参入的DL总和</th>
+				<th width="70">所属行业</th>
+				<th width="70">建档日期</th>
+				<th width="70">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr target="sid_user" rel="1">
+				
+				<td>第一周</td>
+				<td>天津市华建装饰工程有限公司</td>
+				<td>联社营业部</td>
+				<td>29385739203816293</td>
+				<td>5级</td>
+				<td>政府机构</td>
+				<td>2009-05-21</td>
+				<td>
+					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
+					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
+				</td>
+			</tr>
+			<tr target="sid_user" rel="2">
+				
+				<td>第二周</td>
+				<td>天津市华建装饰工程有限公司</td>
+				<td>联社营业部</td>
+				<td>29385739203816293</td>
+				<td>5级</td>
+				<td>政府机构</td>
+				<td>2009-05-21</td>
+				<td>
+					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
+					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
+				</td>
+			</tr>
+                        <tr target="sid_user" rel="2">
+				
+				<td>第三周</td>
+				<td>天津市华建装饰工程有限公司</td>
+				<td>联社营业部</td>
+				<td>29385739203816293</td>
+				<td>5级</td>
+				<td>政府机构</td>
+				<td>2009-05-21</td>
+				<td>
+					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
+					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
+				</td>
+			</tr>
+                        <tr target="sid_user" rel="2">
+				
+				<td>第四周</td>
+				<td>天津市华建装饰工程有限公司</td>
+				<td>联社营业部</td>
+				<td>29385739203816293</td>
+				<td>5级</td>
+				<td>政府机构</td>
+				<td>2009-05-21</td>
+				<td>
+					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
+					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+                
+	</div>
+        <!--分隔线-->
+	<div class="divider"></div>
+        
+	<div class="tabs">
+		<div class="tabsHeader">
+			<div class="tabsHeaderContent">
+				<ul>
+					<li><a href="javascript:;"><span>task扩展</span></a></li>
+					<li><a href="javascript:;"><span>task扩展1</span></a></li>
+					<li><a href="javascript:;"><span>task扩展2</span></a></li>
+					<li><a href="javascript:;"><span>task扩展3</span></a></li>
+					<li><a href="javascript:;"><span>task扩展4</span></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="tabsContent">
+			<div>
+	
+				<div layoutH="195" style="float:left; display:block; overflow:auto; width:240px; border:solid 1px #CCC; line-height:21px; background:#fff">
+				    <ul class="tree treeFolder">
+						<li><a href="javascript">所有Team</a>
+							<ul>
+								<li><a href="__URL__/analyze/tid/1" target="ajax" rel="jbsxBox">Annie</a></li>
+								<li><a href="__URL__/analyze/tid/2" target="ajax" rel="jbsxBox">Astro</a></li>
+								<li><a href="__URL__/analyze/tid/3" target="ajax" rel="jbsxBox">Yama</a></li>
+								<li><a href="__URL__/analyze/tid/4" target="ajax" rel="jbsxBox">Lily</a></li>
+                                                                <li><a href="__URL__/analyze/tid/5" target="ajax" rel="jbsxBox">Rosa</a></li>
+							</ul>
+						</li>
+						<li><a href="javascript">project报表分析</a>
+							<ul>
+								<li><a href="__URL__/analyze/tid/1" target="ajax" rel="jbsxBox">周报</a></li>
+								<li><a href="__URL__/analyze/tid/1" target="ajax" rel="jbsxBox">月报</a></li>
+								<li><a href="__URL__/analyze/tid/1" target="ajax" rel="jbsxBox">年报</a></li>
+								<li><a href="__URL__/analyze/tid/1" target="ajax" rel="jbsxBox">部门总结</a></li>
+							</ul>
+						</li>
+				     </ul>
+				</div>
+				
+				<div id="jbsxBox" class="unitBox" style="margin-left:246px;">
+					<!--#include virtual="list1.html" -->
+				</div>
+	
+			</div>
+			
+			<div>task扩展1</div>
+			
+			<div>task扩展2</div>
+			
+			<div>task扩展3</div>
+			
+			<div>task扩展4</div>
+		</div>
+		<div class="tabsFooter">
+			<div class="tabsFooterContent"></div>
+		</div>
+	</div>
+	
+</div>

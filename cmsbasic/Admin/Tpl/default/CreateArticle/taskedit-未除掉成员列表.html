@@ -1,0 +1,105 @@
+<div class="pageContent">
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+				$("#ares>tr>td>input").bind({
+					focus:function(){
+						var invid = $(this).attr("value");
+						
+						},
+					blur:function(){
+						var editvalue = $(this).val();
+						alert(editvalue);
+						}
+					});
+			});
+    </script>
+    <form method="post" action="__URL__/updatetlist_ares/navTabId/CreateTask" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxMenu)" novalidate="novalidate">
+	<input type="hidden" name="taskid" value="{$_REQUEST.pid}">
+        <input type="hidden" name="mb" value="{$_REQUEST.mb}">
+        <input type="hidden" name="st" value="{$_REQUEST.st}">
+        <input type="hidden" name="et" value="{$_REQUEST.et}">
+        <input type="hidden" value="closeCurrent" name="callbackType">
+       <div class="panelBar">
+		<ul class="toolBar">                    
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                    <!--<li><a class="add" href="__URL__/updatetlist_ares/taskid/{$taskid}/navTabId/CreateTask/st/{$st}/et/{$et}" posttype="string" rel="uid" target="selectedTodo" calback="navTabAjaxMenu" title="你确定要对{$tname}添加了吗？" warn="请选择对应的人"><span>添加</span></a></li>-->
+                    <li class="line">line</li>
+                    <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="50">
+		<thead>
+			<tr>
+                                <th width="60"></th>
+                                <volist name="days_task" id="vo">
+                                    <th width="5" align="center">{$vo.days}</th>
+                                </volist>
+			</tr>
+		</thead>
+                <tbody id="ares">
+                        <tr target="sid_user" rel="{$vo.uid}">
+                                <td>Recommend Manpower</td>
+                                <volist name="days_task" id="vo">
+                                    <td>{$recomment}</td>
+                                </volist>
+			</tr>
+                        <tr>
+                            <td>Except Progress</td>
+                            <volist name="days_task" id="vo">
+                                    <td>{$eprogres}</td>
+                            </volist>
+                        </tr>
+                        <tr>
+                            <td>Actually Manpower</td>
+                                <volist name="days_task" id="vo">
+                                    <td>{$eprogres}</td>
+                                </volist>
+                        </tr>
+                        <tr>
+                            <td>Actually Progress</td>
+                            <volist name="days_task" id="vo">
+                                    <td><input type="text" class="number textInput valid" name="lists[{$key}]" value="{$vo.progres}" size="2">%</td>
+                            </volist>
+                        </tr>
+                        <tr>
+                            <td>Gap</td>
+                            <volist name="days_task" id="vo">
+                                    <td>{$eprogres}</td>
+                            </volist>
+                        </tr>
+                        <volist name="userlist" id="uvo">
+                            <tr height="10">
+                                <td>{$uvo.account}</td>
+                                <volist name="days_task" id="dvo">
+                                    <!--value="<?php $temp='member_tasks_'.$uvo['id']; if(!empty($dvo[$temp])){echo($dvo[$temp]);}else{}?>"-->
+                                    <td><input type="text" class="number textInput valid" name="userlists_{$uvo.id}[{$key}]" detail_time="{$dvo.unixtime}" value="<?php $temp=$uvo['id']; if(!empty($dvo[$temp])){echo($dvo[$temp]);}else{}?>" size="2" onblur="var e_t={$_REQUEST.et};var s_t={$_REQUEST.st};var tid={$_REQUEST.pid};var uid={$uvo.id};var APP ='__APP__'+'/CreateArticle/aresUpdate';var editvalue = $(this).val();var invoid = this.defaultValue;var attr_t = $(this).attr('detail_time'); if(invoid == '' && invoid != editvalue){$.post(APP,{uid:uid,tid:tid,updat:editvalue,d_t:attr_t,s_t:s_t,e_t:e_t,status:0});}else{if(invoid != editvalue){$.post(APP,{uid:uid,tid:tid,updat:editvalue,d_t:attr_t,s_t:s_t,e_t:e_t,status:1});}}  ">
+                                    <a class="btnLook" href="__URL__/expatiation/uid/{$uvo['id']}/un/{$uvo.account}/su/{$dvo.unixtime}" target="dialog" rel="childresult" mask="true" width="800" height="400">[{$uvo.account}]的其他任务信息</a>
+                                    </td>
+                                </volist>
+                            </tr>
+                        </volist>
+                        <tr>
+                            <td>DL(总数)</td>
+                            <volist name="days_task" id="dvo">
+                                <td><input type="text" class="number textInput valid" name="dllists[{$key}]" value="{$dvo.dllists}" size="2"></td>
+                            </volist>
+                        </tr>
+		</tbody>
+	</table>
+	<!--
+        <div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+				<option value="200">200</option>
+			</select>
+			<span>条，共${totalCount}条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="200" numPerPage="20" pageNumShown="10" currentPage="1"></div>
+	</div>
+        -->
+    </form>
+</div>

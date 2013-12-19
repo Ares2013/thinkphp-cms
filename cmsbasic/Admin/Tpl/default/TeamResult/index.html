@@ -1,0 +1,98 @@
+<form id="pagerForm" action="__URL__" method="post">
+	<input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="title" value="{$_REQUEST.title}"/>
+	<input type="hidden" name="cat_id" value="{$_REQUEST.cat_id}"/>
+</form>
+
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+		<input type="hidden" name="pageNum" value="1"/>
+		<div class="searchBar">
+			<ul class="searchContent">
+				<li>
+					<label>标题：</label>
+					<input type="text" name="title" value="{$_REQUEST.title}"/>
+				</li>
+				<li>
+					<label>分类：</label>
+					<select name="cat_id">
+						<option value="">选择分类</option>
+						<volist name="types" id="vo">
+							<option value="{$vo.cat_id}" <eq name="vo.cat_id" value="$_REQUEST.cat_id">selected</eq>>{$vo.cat_name}</option>
+						</volist>
+					</select>
+				</li>
+			</ul>
+			<div class="subBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+				</ul>
+			</div>
+		</div>
+		</form>
+	</div>
+	
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+				<li><a class="add" href="__URL__/add/cat_id/{$_REQUEST.cat_id}" target="navTab"><span>新增</span></a></li>
+				<li><a class="edit" href="__URL__/edit/cat_id/{$_REQUEST.cat_id}/id/{sid_list}" target="navTab" warn="请选择一条记录"><span>编辑</span></a></li>
+				<!--
+                                <li><a class="delete" href="__URL__/foreverdelete/cat_id/{$_REQUEST.cat_id}/id/{sid_list}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" warn="请选择一条记录"><span>删除</span></a></li>
+				<li class="line">line</li>
+				<li><a class="batch" href="__URL__/foreverdelete/cat_id/{$_REQUEST.cat_id}" posttype="string" rel="ids" target="selectedTodo" calback="navTabAjaxMenu" title="你确定要删除吗？" warn="请选择节点"><span>批量删除</span></a></li>
+                                -->
+			</ul>
+		</div>
+
+		<table class="table" width="100%" layoutH="114">
+			<thead>
+			<tr>
+				<th width="5">
+					<input type="checkbox" group="ids" class="checkboxCtrl" />
+				</th>
+				<th width="10">编号</th>
+				<th width="80">project名</th>
+				<th width="100">project类型</th>
+				<th width="80">所属组名</th>
+				<th width="80">添加者</th>
+				<th width="100">添加时间</th>
+				<th width="60">是否完成</th>
+				<th width="60">task总数</th>
+                                <th width="60">状态</th>
+			</tr>
+			</thead>
+                          
+			<tbody>
+			<volist id="vo" name="list">
+				<tr target="sid_node" rel="{$vo['article_id']}">
+					<td>
+						<input name="ids"  type="checkbox" value="{$vo['id']}" />
+					</td>
+					<td>{$vo['id']}</td>
+                                        <td><a href="__URL__/taskresult/pid/{$vo['id']}/" target="navTab" rel="CreateTask">{$vo['title']}</a></td>
+					<td>{$vo['type']}</td>
+					<td>{$vo['author']}</td>
+					<td>{$vo['c_name']}</td>
+					<td>{$vo['c_time']|date="Y-m-d H:i:s",###}</td>
+					<td>{$vo['status']|showStatusImg=$vo['article_id']}</td>
+					<td>{$vo['total']}</td>
+					<td>{$vo['sort']}</td>
+					
+				</tr>
+			</volist>
+			</tbody>
+		</table>
+
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$totalCount}条</span>
+			</div>
+			<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+		</div>
+
+	</div>
+	
+</div>
+

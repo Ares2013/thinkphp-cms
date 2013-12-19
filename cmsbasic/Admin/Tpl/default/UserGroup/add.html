@@ -1,0 +1,52 @@
+<div class="pageContent">
+	<form method="post" action="__URL__/insert/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxMenu)">
+		<!--input type="hidden" name="create_time" value="<?php echo time(); ?>"/> -->
+		<input type="hidden" name="level" value="{$level}">
+		<input type="hidden" name="pid" value="{$pid}">
+		<input type="hidden" name="callbackType" value="closeCurrent" />
+		<div class="pageFormContent" layoutH="58">
+			<div class="unit">
+				<label>内部名：</label>
+                                <input type="text" class="required alphanumeric"  name="nickname">
+                                <span class="info">例如:Annie/Astro/Lily/Rosa/Yama</span>
+			</div>
+			<div class="unit">
+				<label>行政名：</label>
+				<input type="text" class="alphanumeric"   name="name">
+                                <span class="info">例如:1STS10,1STS20,1STSZ10,1STZ20</span>
+			</div>
+			<div class="unit">
+				<label>PCC编号：</label>
+				<input type="text" class="alphanumeric"   name="pccname">
+                                <span class="info">例：V00000，L0000，F52000，F51000，F50300</span>
+			</div>
+                        <!--<div class="unit">
+                                    <label>所属分组：</label>
+                                    <select name="pid">
+                                            <option value="">未分组</option>
+                                                    <volist name="list" id="group">
+                                                    <option value="{$group.id}" <eq name="group.id" value="$vo['pid']">selected</eq>>{$group.nickname}</option>
+                                                    </volist>
+                                    </select>
+                        </div>-->
+			<div class="unit">
+				<label>状态：</label>
+				<SELECT name="status">
+					<option value="1">启用</option>
+					<option value="0">禁用</option>
+				</SELECT>
+			</div>
+			<div class="unit">
+				<label>描 述：</label>
+				<TEXTAREA name="remark"  rows="3" cols="57"></textarea>
+			</div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>

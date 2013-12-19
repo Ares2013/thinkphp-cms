@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/js/mf-pattern/{$adp.data}.css">
+<script type="text/javascript" src="__PUBLIC__/js/myfocus-2.0.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mf-pattern/{$adp.data}.js"></script>
+<script type="text/javascript">
+	//设置
+	myFocus.set({
+		id:'slideFocus',//ID
+		pattern:'{$adp.data}',//风格
+		width:parseInt('{$adp.ad_width}'),
+		height:parseInt('{$adp.ad_height}')
+	});
+</script>
+<div id="slideFocus">
+	<div class="pic">
+		<ul>
+			<volist name="adlist" id="ad">
+				<li>
+					<a alt="{$ad.ad_name}" href="{$ad.ad_link}">
+						<img thumb="" alt="{$ad.ad_name}" src="__PUBLIC__/Upload/adv/{$ad.ad_code}" style="width:{$adp['ad_width']}px;height:{$adp['ad_height']}px" />
+					</a>
+				</li>
+			</volist>
+			<empty name="adlist">
+				<li>
+					<a>
+						<img thumb="" alt="吃货来了" src="__SKIN__/images/banner2.jpg" />
+					</a>
+				</li>
+			</empty>
+	  </ul>
+	</div>
+</div>

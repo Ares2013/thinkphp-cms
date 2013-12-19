@@ -1,0 +1,68 @@
+<div class="pageContent">
+	<form method="post" action="__URL__/insert/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxMenu)">
+		<input type="hidden" name="c_name_id" value="<?php echo $_SESSION['authId'] ?>"/> 
+		<input type="hidden" name="level" value="{$level}">
+		<input type="hidden" name="pid" value="{$pid}">
+		<input type="hidden" name="callbackType" value="closeCurrent" />
+		<div class="pageFormContent" layoutH="58">
+			<div class="unit">
+				<label>project_name：</label>
+                                <!--alphanumeric -->
+				<input type="text" class="required"  name="title">
+			</div>
+			<div class="unit">
+				<label>project_code：</label>
+				<input type="text" class="required"   name="code">
+			</div>
+			<div class="unit">
+				<label>create_name：</label>
+                                <input type="text" class="textInput readonly" readonly="true" name="c_name" value="{$jobnumber}">
+			</div>
+			<div class="unit">
+				<label>Test Leader：</label>
+				<!--<input type="text" class=""   name="p_cw">-->
+                                <select name="p_cw">
+                                    <volist name="userlist" id="u_list">
+                                        <option value="{$u_list.id}" <eq name="u_list['id']" value="$uid" >selected</eq>>{$u_list['account']}</option>
+                                    </volist>
+                                </select>
+			</div>
+                        <div class="unit">
+				<label>Type：</label>
+				<SELECT name="type">
+                                    <volist name="typelist" id="vo">
+                                        <option value="{$vo.id}">{$vo.title}===>{$vo.group_id|getUserGroupName}</option>
+                                    </volist>
+				</SELECT>
+			</div>
+			<div class="unit">
+				<label>所属内部组名：</label>
+				<SELECT name="teamid">
+                                    <option value=""></option>
+                                    <volist name="allgroup" id="allgroup">
+                                        <option value="{$allgroup.id}">{$allgroup.nickname}</option>
+                                    </volist>
+				</SELECT>
+			</div>
+			<div class="unit">
+				<label>状态：</label>
+				<SELECT name="status">
+					<option value="1">启用</option>
+					<option value="0">禁用</option>
+				</SELECT>
+			</div>
+			<div class="unit">
+				<label>描 述：</label>
+				<TEXTAREA name="remark"  rows="3" cols="57"></textarea>
+			</div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+
+</div>

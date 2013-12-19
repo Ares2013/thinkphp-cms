@@ -1,0 +1,90 @@
+<form id="pagerForm" action="__URL__" method="post">
+	<input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="cat_name" value="{$_REQUEST.cat_name}"/>
+	<input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+	<input type="hidden" name="_sort" value="{$_REQUEST._sort}"/>
+</form>
+
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+		<div class="searchBar">
+			<ul class="searchContent">
+				<li>
+					<label>分类名：</label>
+					<input type="text" name="cat_name" value="{$_REQUEST.cat_name}"/>
+				</li>
+			</ul>
+			<div class="subBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+				</ul>
+			</div>
+		</div>
+		</form>
+	</div>
+	
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+				<li><a class="add" href="__URL__/add" target="dialog" width="590" height="370" mask="true"><span>新增</span></a></li>
+				<li><a class="edit" href="__URL__/edit/id/{sid_list}" target="dialog" width="590" height="370" mask="true" warn="请选择一条记录"><span>编辑</span></a></li>
+				<li><a class="delete" href="__URL__/foreverdelete/id/{sid_list}/navTabId/__MODULE__" target="ajaxTodo" calback="navTabAjaxMenu" title="你确定要删除吗？" warn="请选择一条记录"><span>删除</span></a></li>
+				<li class="line">line</li>
+				<li><a class="delete" href="__URL__/foreverdelete" posttype="string" rel="ids" target="selectedTodo" calback="navTabAjaxMenu" title="你确定要删除吗？" warn="请选择节点"><span>批量删除</span></a></li>
+				<li><a class="add" href="__URL__/tree" target="dialog" width="250" height="350" rel="tree"><span>树形结构显示</span></a> </li>
+				<li class="line">line</li>
+				<li><a class="delete" href="__URL__/FormateCate" target="ajaxTodo"><span>格式化分类</span></a></li>
+			</ul>
+		</div>
+
+		<table class="table" width="100%" layoutH="136">
+			<thead>
+			<tr>
+				<th width="40">
+					<input type="checkbox" group="ids" class="checkboxCtrl" />
+				</th>
+				<th width="60" orderField="cat_id" <if condition="$sortorder eq 'cat_id'">class="{$sortasc}"</if> style="cursor: pointer;">编号</th>
+				<th width="100">分类名</th>
+				<th width="100">所属父类</th>
+				<th width="80">状态</th>
+				<th width="100">列表模板</th>
+				<th width="100">详情模板</th>
+				<th width="100" orderField="path" <if condition="$sortorder eq 'path'">class="{$sortasc}"</if> style="cursor: pointer;">类目路径</th>
+				<th width="100" orderField="npath" <if condition="$sortorder eq 'npath'">class="{$sortasc}"</if> style="cursor: pointer;">下一级类目路径</th>
+				<th width="60">排序值</th>
+				
+			</tr>
+			</thead>
+			<tbody>
+			<volist id="vo" name="list">
+				<tr target="sid_list" rel="{$vo['cat_id']}">
+					<td>
+						<input name="ids"  type="checkbox" value="{$vo['cat_id']}" />
+					</td>
+					<td>{$vo['cat_id']}</td>
+					<td>{$vo['cat_name']}</td>
+					<td>{$vo['parent_id']|getArticleCatName}</td>
+					<td>{$vo['status']|showStatusImg=$vo['cat_id']}</td>
+					<td>{$vo['list_template']}</td>
+					<td>{$vo['template']}</td>
+					<td>{$vo['path']}</td>
+					<td>{$vo['npath']}</td>
+					<td>{$vo['sort_order']}</td>
+								
+				</tr>
+			</volist>
+			</tbody>
+		</table>
+
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$totalCount}条</span>
+			</div>
+			<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+		</div>
+
+	</div>
+	
+</div>
+
